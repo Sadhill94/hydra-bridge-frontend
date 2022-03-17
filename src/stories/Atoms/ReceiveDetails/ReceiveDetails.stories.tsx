@@ -10,18 +10,14 @@ export default {
 } as ComponentMeta<typeof ReceiveDetails>;
 
 const Template: ComponentStory<typeof ReceiveDetails> = (args) => (
-  <div style={{ maxWidth: "50rem" }}>
-    <ReceiveDetails {...args} />
-  </div>
+  <ReceiveDetails {...args} />
 );
 
 export const Default = Template.bind({});
 Default.args = {
   iconKey: "hopBridge" as IconKeys,
   chainName: "Hop",
-  gasFees: 0.39979797399225586,
-  serviceTime: 800,
-  transactionFees: "0.00001 ETH",
-  slippage: "0.00001 ETH",
+  gasFees: "~$8.53",
+  serviceTime: "~5",
   amountOut: "0.00001 ETH",
 };

@@ -10,10 +10,10 @@ import { IconKeys } from "../common/commonTypes";
 
 /**
  * Helper to easily get the icon key from a bridge
- * @param initialBridgeName
+ * @param initialBridgeName (bridgeName)
  * @return the bridge icon
  */
-export const getBridgeIcon = (initialBridgeName: string): IconKeys => {
+export const getBridgeIcon = (initialBridgeName?: string): IconKeys => {
   let bridgeName = initialBridgeName;
   if (bridgeName === POLYGON_BRIDGE || bridgeName === POLYGON_BRIDGE_GOERLI) {
     bridgeName = POLYGON;
@@ -23,7 +23,7 @@ export const getBridgeIcon = (initialBridgeName: string): IconKeys => {
     bridgeName = HOP;
   }
 
-  return `${bridgeName.toLocaleLowerCase()}Bridge` as IconKeys;
+  return `${bridgeName?.toLocaleLowerCase()}Bridge` as IconKeys;
 };
 
 /**

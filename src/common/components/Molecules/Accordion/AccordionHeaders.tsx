@@ -10,7 +10,6 @@ import {
 import { FlexWrapper } from "../../Atoms/Wrappers/Wrapper";
 import React, { ReactNode } from "react";
 import Icon from "../../Icon/Icon";
-import { formatGasFees } from "../../../../helpers/formatsHelper";
 
 export type AccordionHeaderProps = {
   children: ReactNode;
@@ -39,13 +38,13 @@ type ReceiveDetailsAccordionHeaderProps = {
   amountOut?: string;
   inProgress?: boolean;
   isDisabled?: boolean;
-  transactionCoastUsd?: number;
+  gasFees: string;
 };
 export const ReceiveDetailsAccordionHeader = ({
   isOpen,
   amountOut,
   inProgress,
-  transactionCoastUsd,
+  gasFees,
 }: ReceiveDetailsAccordionHeaderProps) => {
   const { t } = useTranslation();
 
@@ -79,7 +78,7 @@ export const ReceiveDetailsAccordionHeader = ({
                 {/* TODO 44 integrate font awesome in next PR and replace */}
                 <Icon name={"copy"} size={"1.6rem"} />
                 <StyledAccordionReceiveDetailsGasFeeEstimation>
-                  ~${formatGasFees(transactionCoastUsd)}
+                  {gasFees}
                 </StyledAccordionReceiveDetailsGasFeeEstimation>
               </>
             )}

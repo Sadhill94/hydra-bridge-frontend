@@ -23,7 +23,6 @@ function useAmountInput(
 
   const onAmountInChange = (value: string) => {
     setAmountIn(value);
-    setAmountOut(value);
     setIsNotEnoughBalance(
       getIsNotEnoughBalance(
         walletBalances!,

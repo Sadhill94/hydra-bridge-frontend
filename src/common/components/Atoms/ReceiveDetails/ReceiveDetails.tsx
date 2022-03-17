@@ -10,10 +10,10 @@ import { stakenetTheme as theme } from "../../../../shell/theme/stakenetTheme";
 type ReceiveDetailsProps = {
   iconKey: IconKeys;
   chainName: string;
-  gasFees: number;
-  serviceTime: number;
-  transactionFees: string;
-  slippage: string;
+  gasFees: string;
+  serviceTime: string;
+  transactionFees?: string;
+  slippage?: string;
   amountOut: string;
 };
 
@@ -22,8 +22,6 @@ const ReceiveDetails = ({
   chainName,
   gasFees,
   serviceTime,
-  transactionFees,
-  slippage,
   amountOut,
 }: ReceiveDetailsProps) => {
   const { t } = useTranslation();
@@ -50,24 +48,7 @@ const ReceiveDetails = ({
           {t("gas-fees-time")}
         </StyledReceiveDetailsParagraph>
         <StyledReceiveDetailsParagraph isWhite>
-          {gasFees}
-          {serviceTime}
-        </StyledReceiveDetailsParagraph>
-      </ReceiveDetailsRow>
-      <ReceiveDetailsRow hasBottomBorder>
-        <StyledReceiveDetailsParagraph>
-          {t("transactions-fees")}
-        </StyledReceiveDetailsParagraph>
-        <StyledReceiveDetailsParagraph isWhite>
-          {transactionFees}
-        </StyledReceiveDetailsParagraph>
-      </ReceiveDetailsRow>
-      <ReceiveDetailsRow hasBottomBorder>
-        <StyledReceiveDetailsParagraph>
-          {t("slippage")}
-        </StyledReceiveDetailsParagraph>
-        <StyledReceiveDetailsParagraph isWhite>
-          {slippage}
+          {gasFees} | {serviceTime} {t("min")}
         </StyledReceiveDetailsParagraph>
       </ReceiveDetailsRow>
       <ReceiveDetailsRow>

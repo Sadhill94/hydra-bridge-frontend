@@ -54,16 +54,14 @@ const receiveDetailsHeaderProps = {
   amountOut: "0.00001",
   inProgress: false,
   isDisabled: false,
-  transactionCoastUsd: 0.45456651,
+  gasFees: "~$8.53",
 };
 
 const receiveDetailsProps = {
   iconKey: "hopBridge" as IconKeys,
   chainName: "Hop",
-  gasFees: 0.39979797399225586,
-  serviceTime: 800,
-  transactionFees: "0.00001 ETH",
-  slippage: "0.00001 ETH",
+  gasFees: "~$8.53",
+  serviceTime: "~5",
   amountOut: "0.00001 ETH",
 };
 export const AsReceiveDetails = Template.bind({});
