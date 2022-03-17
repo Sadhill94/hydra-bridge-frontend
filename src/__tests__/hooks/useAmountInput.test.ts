@@ -53,7 +53,7 @@ describe("useAmountInput hook", () => {
       });
       expect(hookInstance.current.amountIn).toBe("32");
       expect(hookInstance.current.getParsedAmountIn()).toBe(32);
-      expect(hookInstance.current.getParsedAmountOut()).toBe(32);
+      expect(hookInstance.current.getParsedAmountOut()).toBe(0);
     });
 
     it("should be empty and parsedFunctions returns 0", () => {
@@ -64,7 +64,7 @@ describe("useAmountInput hook", () => {
       });
       expect(hookInstance.current.amountIn).toBe("");
       expect(hookInstance.current.getParsedAmountIn()).toBe(0);
-      expect(hookInstance.current.getParsedAmountOut()).toBe(0);
+      expect(hookInstance.current.getParsedAmountOut()).toBe(32);
     });
 
     it("should be a decimal number", () => {
@@ -73,7 +73,7 @@ describe("useAmountInput hook", () => {
       });
       expect(hookInstance.current.amountIn).toBe("32.4");
       expect(hookInstance.current.getParsedAmountIn()).toBe(32.4);
-      expect(hookInstance.current.getParsedAmountOut()).toBe(32.4);
+      expect(hookInstance.current.getParsedAmountOut()).toBe(0);
     });
 
     it("should return number 0 when writing first with a dot", () => {
@@ -91,7 +91,7 @@ describe("useAmountInput hook", () => {
       });
       expect(hookInstance.current.amountIn).toBe(".34");
       expect(hookInstance.current.getParsedAmountIn()).toBe(0.34);
-      expect(hookInstance.current.getParsedAmountOut()).toBe(0.34);
+      expect(hookInstance.current.getParsedAmountOut()).toBe(0);
     });
 
     it("should be 0 and decimal number", () => {
@@ -100,7 +100,7 @@ describe("useAmountInput hook", () => {
       });
       expect(hookInstance.current.amountIn).toBe("7.");
       expect(hookInstance.current.getParsedAmountIn()).toBe(7);
-      expect(hookInstance.current.getParsedAmountOut()).toBe(7);
+      expect(hookInstance.current.getParsedAmountOut()).toBe(0);
     });
 
     it("should be parsed correctly with big numbers", () => {
@@ -111,9 +111,7 @@ describe("useAmountInput hook", () => {
       expect(hookInstance.current.getParsedAmountIn()).toBe(
         99999999999999999999999999
       );
-      expect(hookInstance.current.getParsedAmountOut()).toBe(
-        99999999999999999999999999
-      );
+      expect(hookInstance.current.getParsedAmountOut()).toBe(0);
     });
   });
 });

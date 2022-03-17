@@ -24,6 +24,7 @@ type Props = {
   chainFrom: ChainResponseDto;
   chainTo: ChainResponseDto;
   amountIn: string;
+  parsedAmountIn: number;
   amountOut: string;
   selectedRoute?: RouteDto;
   isConnected: boolean;
@@ -42,6 +43,7 @@ type Props = {
   onConnectWallet: () => void;
   onApproveWallet: () => void;
   onMoveAssets: () => void;
+  onResetValues: () => void;
 };
 
 const MainContent = ({
@@ -49,6 +51,7 @@ const MainContent = ({
   chainFrom,
   chainTo,
   amountIn,
+  parsedAmountIn,
   amountOut,
   selectedRoute,
   isEth,
@@ -67,6 +70,7 @@ const MainContent = ({
   onConnectWallet,
   onApproveWallet,
   onMoveAssets,
+  onResetValues,
 }: Props) => {
   const { t } = useTranslation();
 
@@ -80,6 +84,13 @@ const MainContent = ({
       onSetAmountOut(selectedRoute.bridgeRoute?.amountOut);
     }
   }, [selectedRoute]);
+
+  // reset the process (hide routes and close accordion) if the user type only 0 or empty in the input
+  useEffect(() => {
+    if (parsedAmountIn <= 0) {
+      onResetValues();
+    }
+  }, [parsedAmountIn]);
 
   const amountInAdditionalAttributes = {
     pattern: getOnlyNumbersAndAllowDotPattern,

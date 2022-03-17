@@ -304,6 +304,7 @@ const Home = ({ chains }: Props) => {
             chainFrom={chainFrom!}
             chainTo={chainTo!}
             amountIn={amountIn}
+            parsedAmountIn={getParsedAmountIn()}
             amountOut={amountOut}
             onSetAmountOut={(value: string) => setAmountOut(value)}
             selectedRoute={bridgeRoutes.find((route) => route.id === routeId)}
@@ -328,6 +329,7 @@ const Home = ({ chains }: Props) => {
             }
             onConnectWallet={onConnectWallet}
             onMoveAssets={handleMoveAssets}
+            onResetValues={() => onResetValues()}
             onSelectChainTo={hanldeOnSelectChainTo}
             onSelectChainFrom={hanldeOnSelectChainFrom}
           />

@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import React, { ReactNode } from "react";
 
 import {
   StyledAccordionHeader,
@@ -8,7 +9,6 @@ import {
   StyledAccordionReceiveDetailsAmountOut,
 } from "./styles";
 import { FlexWrapper } from "../../Atoms/Wrappers/Wrapper";
-import React, { ReactNode } from "react";
 import Icon from "../../Icon/Icon";
 
 export type AccordionHeaderProps = {
