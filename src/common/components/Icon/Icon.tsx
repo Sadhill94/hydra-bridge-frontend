@@ -22,6 +22,7 @@ const Icon = ({ width, height, size, color, name, ...props }: IIconProps) => {
 
   return (
     <IconComponent
+      id={(Math.random() * 9999).toString()}
       width={width || size || defaultSize}
       height={height || size || defaultSize}
       color={color || theme.colors.white}

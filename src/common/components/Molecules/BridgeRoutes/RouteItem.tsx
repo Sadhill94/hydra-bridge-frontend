@@ -2,8 +2,8 @@ import React, { ReactNode } from "react";
 import styled from "styled-components";
 
 import Icon from "../../Icon/Icon";
-import { ContainerCard } from "../../Atoms/Containers/Container";
 import {
+  RouteItemContainerCard,
   StyledBridgeArrow,
   StyledBridgeChain,
   StyledBridgeRoute,
@@ -13,7 +13,6 @@ import { FakeButton } from "../../Atoms/Buttons/Button";
 
 import { IconKeys } from "../../../commonTypes";
 import { stakenetTheme as theme } from "../../../../shell/theme/stakenetTheme";
-import { devicesUp } from "../../../../media";
 
 const CustomFakeButton = styled(FakeButton)<{
   hasBoxShadow?: boolean;
@@ -21,27 +20,6 @@ const CustomFakeButton = styled(FakeButton)<{
   &:focus,
   &:focus-within {
     background-color: ${theme.colors.blue.darker};
-  }
-`;
-export const RouteItemContainerCard = styled(ContainerCard)<{
-  isSelected: boolean;
-  hasChildren?: boolean;
-  hasError?: boolean;
-}>`
-  min-height: ${(props) =>
-    props.hasChildren ? "10rem" : props.hasError ? "10rem" : "auto"};
-  padding: 1rem;
-  background-color: ${(props) =>
-    props.isSelected ? theme.colors.gray.dark : theme.colors.blue.darkest};
-  box-shadow: ${theme.boxShadow.sm};
-  border-radius: ${theme.borderRadius.lg};
-
-  &:hover,
-  &:focus {
-    background-color: ${theme.colors.gray.dark};
-  }
-  @media only screen and ${devicesUp.md} {
-    padding: 1.8rem 1.8rem 0.8rem 1.8rem !important;
   }
 `;
 

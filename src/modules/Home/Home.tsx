@@ -55,17 +55,18 @@ const CustomFlexWrapper = styled(FlexWrapper)`
     justify-content: flex-end;
     margin-bottom: ${theme.margin.xxl};
 
-    .hydra-bridge-logo-sm {
+    .hydra-bridge-logo {
       display: none;
     }
   }
   @media only screen and ${devicesUp.lg} {
     position: absolute;
+    padding-right: 2rem;
     left: 0;
   }
 
-  @media only screen and ${devicesUp.lg} {
-    padding-right: 4rem;
+  @media only screen and ${devicesUp.xl} {
+    padding-left: 4rem;
   }
 `;
 
@@ -269,7 +270,7 @@ const Home = ({ chains }: Props) => {
     <StyledHydraBackground>
       <CustomFlexWrapper>
         <Icon
-          className={"hydra-bridge-logo-sm"}
+          className={"hydra-bridge-logo"}
           width={"13.6rem"}
           height={"3.8rem"}
           name={"hydraBridgeLogoSm"}

@@ -1,8 +1,9 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-import RouteItem, { RouteItemContainerCard } from "./RouteItem";
+import RouteItem from "./RouteItem";
 import RouteItemFees from "./RouteItemFees";
+import { RouteItemContainerCard } from "./styles";
 
 import { RouteDto } from "../../../dtos";
 import { getBridgeIcon, getCoinIcon } from "../../../../helpers/icons";
