@@ -118,7 +118,7 @@ const MainContent = ({
   };
 
   return (
-    <ContainerCard>
+    <ContainerCard hasHoverEffect={true}>
       <TransferChainSelects
         optionsChainsFrom={mapChainResponseDtoFromSendingTarget(chains)}
         optionsChainsTo={mapChainResponseDtoToReceivingTarget(chains)}
@@ -158,7 +158,6 @@ const MainContent = ({
         onWalletConnect={onConnectWallet}
         onWalletApprove={onApproveWallet}
         onMoveAssets={onMoveAssets}
-        style={{ marginBottom: theme.margin.sm }}
       />
     </ContainerCard>
   );
