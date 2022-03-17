@@ -5,23 +5,24 @@ exports[`The Bridge route item should render correctly 1`] = `
   <div
     aria-expanded="false"
     aria-label="select route"
-    class="sc-iqseJM bzJIfm sc-crHmcD gYEbqi"
+    class="sc-crHmcD haCQkc sc-egiyK crsdKY"
     role="button"
     tabindex="0"
   >
     <div
-      class="sc-bdvvtL sc-jRQBWg fGXmcv fAOTCB sc-egiyK ixpTqd"
+      class="sc-bdvvtL sc-jRQBWg fGXmcv fAOTCB sc-gKclnd ebgUKt"
     >
       <div
-        class="sc-gKclnd konHGI"
+        class="sc-iCfMLu jHmZzF"
       >
         <div
-          class="sc-iCfMLu gYGgwA"
+          class="sc-furwcr ejwoJX"
         >
           <svg
             class="amount__icon"
             color="#FFFFFF"
             height="3.2rem"
+            id="1055.9308428772297"
             width="2.8rem"
           >
             eth.svg
@@ -33,24 +34,26 @@ exports[`The Bridge route item should render correctly 1`] = `
           </span>
         </div>
         <div
-          class="sc-furwcr fhgROL"
+          class="sc-pVTFL kPlIfM"
         >
           <svg
             class="arrow__icon"
             color="#FFFFFF"
             height="1.8rem"
+            id="6224.103823117506"
             width="2.1rem"
           >
             double-arrow-right.svg
           </svg>
         </div>
         <div
-          class="sc-pVTFL qWzKy"
+          class="sc-jrQzAO dxiNdQ"
         >
           <svg
             class="chain__icon chain__icon--sm"
             color="#FFFFFF"
             height="2.6rem"
+            id="1215.8412991164969"
             width="2.6rem"
           >
             polygon.svg
@@ -68,6 +71,7 @@ exports[`The Bridge route item should render correctly 1`] = `
                 class="network__icon"
                 color="#FFFFFF"
                 height="2.6rem"
+                id="3233.7981763404423"
                 width="2.6rem"
               >
                 polygon.svg
@@ -79,24 +83,26 @@ exports[`The Bridge route item should render correctly 1`] = `
           </div>
         </div>
         <div
-          class="sc-furwcr fhgROL"
+          class="sc-pVTFL kPlIfM"
         >
           <svg
             class="arrow__icon"
             color="#FFFFFF"
             height="1.8rem"
+            id="2905.156973432092"
             width="2.1rem"
           >
             double-arrow-right.svg
           </svg>
         </div>
         <div
-          class="sc-iCfMLu fRazBy"
+          class="sc-furwcr bwENRV"
         >
           <svg
             class="amount__icon"
             color="#FFFFFF"
             height="3.2rem"
+            id="5975.017822179615"
             width="2.8rem"
           >
             eth.svg

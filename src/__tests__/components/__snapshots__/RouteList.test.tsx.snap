@@ -9,23 +9,24 @@ exports[`The Bridge route list should render the routes, when a error occurs 1`]
     <div
       aria-expanded="false"
       aria-label="select route"
-      class="sc-iqseJM bzJIfm sc-crHmcD gYEbqi"
+      class="sc-crHmcD haCQkc sc-egiyK crsdKY"
       role="button"
       tabindex="0"
     >
       <div
-        class="sc-bdvvtL sc-jRQBWg fGXmcv fAOTCB sc-egiyK eqEoBy"
+        class="sc-bdvvtL sc-jRQBWg fGXmcv fAOTCB sc-gKclnd esCjbG"
       >
         <div
-          class="sc-gKclnd konHGI"
+          class="sc-iCfMLu jHmZzF"
         >
           <div
-            class="sc-iCfMLu gYGgwA"
+            class="sc-furwcr ejwoJX"
           >
             <svg
               class="amount__icon"
               color="#FFFFFF"
               height="3.2rem"
+              id="6274.182481866423"
               width="2.8rem"
             >
               usdc.svg
@@ -37,24 +38,26 @@ exports[`The Bridge route list should render the routes, when a error occurs 1`]
             </span>
           </div>
           <div
-            class="sc-furwcr fhgROL"
+            class="sc-pVTFL kPlIfM"
           >
             <svg
               class="arrow__icon"
               color="#FFFFFF"
               height="1.8rem"
+              id="7882.123382469668"
               width="2.1rem"
             >
               double-arrow-right.svg
             </svg>
           </div>
           <div
-            class="sc-pVTFL qWzKy"
+            class="sc-jrQzAO dxiNdQ"
           >
             <svg
               class="chain__icon chain__icon--sm"
               color="#FFFFFF"
               height="2.6rem"
+              id="6902.202122668638"
               width="2.6rem"
             >
               hop.svg
@@ -72,6 +75,7 @@ exports[`The Bridge route list should render the routes, when a error occurs 1`]
                   class="network__icon"
                   color="#FFFFFF"
                   height="2.6rem"
+                  id="8959.033485136084"
                   width="2.6rem"
                 >
                   hop.svg
@@ -83,24 +87,26 @@ exports[`The Bridge route list should render the routes, when a error occurs 1`]
             </div>
           </div>
           <div
-            class="sc-furwcr fhgROL"
+            class="sc-pVTFL kPlIfM"
           >
             <svg
               class="arrow__icon"
               color="#FFFFFF"
               height="1.8rem"
+              id="5568.916387669392"
               width="2.1rem"
             >
               double-arrow-right.svg
             </svg>
           </div>
           <div
-            class="sc-iCfMLu fRazBy"
+            class="sc-furwcr bwENRV"
           >
             <svg
               class="amount__icon"
               color="#FFFFFF"
               height="3.2rem"
+              id="1677.122775902027"
               width="2.8rem"
             >
               usdc.svg
@@ -126,7 +132,7 @@ exports[`The Bridge route list should render the routes, when a error occurs 1`]
     </div>
   </div>
   <div
-    class="sc-bdvvtL sc-jRQBWg fGXmcv fAOTCB sc-egiyK jMIVTt"
+    class="sc-bdvvtL sc-jRQBWg fGXmcv fAOTCB sc-gKclnd lkmuhl"
     style="width: 100%; margin-bottom: 1.2rem;"
   >
     <p
@@ -141,7 +147,7 @@ exports[`The Bridge route list should render the routes, when a error occurs 1`]
 exports[`The Bridge route list should render the routes, when all of them have errors 1`] = `
 <DocumentFragment>
   <div
-    class="sc-bdvvtL sc-jRQBWg fGXmcv fAOTCB sc-egiyK jMIVTt"
+    class="sc-bdvvtL sc-jRQBWg fGXmcv fAOTCB sc-gKclnd lkmuhl"
     style="width: 100%; margin-bottom: 1.2rem;"
   >
     <p
@@ -151,7 +157,7 @@ exports[`The Bridge route list should render the routes, when all of them have e
     </p>
   </div>
   <div
-    class="sc-bdvvtL sc-jRQBWg fGXmcv fAOTCB sc-egiyK jMIVTt"
+    class="sc-bdvvtL sc-jRQBWg fGXmcv fAOTCB sc-gKclnd lkmuhl"
     style="width: 100%; margin-bottom: 1.2rem;"
   >
     <p
@@ -172,23 +178,24 @@ exports[`The Bridge route list should render with routes 1`] = `
     <div
       aria-expanded="false"
       aria-label="select route"
-      class="sc-iqseJM bzJIfm sc-crHmcD gYEbqi"
+      class="sc-crHmcD haCQkc sc-egiyK crsdKY"
       role="button"
       tabindex="0"
     >
       <div
-        class="sc-bdvvtL sc-jRQBWg fGXmcv fAOTCB sc-egiyK eqEoBy"
+        class="sc-bdvvtL sc-jRQBWg fGXmcv fAOTCB sc-gKclnd esCjbG"
       >
         <div
-          class="sc-gKclnd konHGI"
+          class="sc-iCfMLu jHmZzF"
         >
           <div
-            class="sc-iCfMLu gYGgwA"
+            class="sc-furwcr ejwoJX"
           >
             <svg
               class="amount__icon"
               color="#FFFFFF"
               height="3.2rem"
+              id="9929.559218610551"
               width="2.8rem"
             >
               usdc.svg
@@ -200,24 +207,26 @@ exports[`The Bridge route list should render with routes 1`] = `
             </span>
           </div>
           <div
-            class="sc-furwcr fhgROL"
+            class="sc-pVTFL kPlIfM"
           >
             <svg
               class="arrow__icon"
               color="#FFFFFF"
               height="1.8rem"
+              id="18.345668438854414"
               width="2.1rem"
             >
               double-arrow-right.svg
             </svg>
           </div>
           <div
-            class="sc-pVTFL qWzKy"
+            class="sc-jrQzAO dxiNdQ"
           >
             <svg
               class="chain__icon chain__icon--sm"
               color="#FFFFFF"
               height="2.6rem"
+              id="9272.842567708822"
               width="2.6rem"
             >
               hop.svg
@@ -235,6 +244,7 @@ exports[`The Bridge route list should render with routes 1`] = `
                   class="network__icon"
                   color="#FFFFFF"
                   height="2.6rem"
+                  id="931.9875134078274"
                   width="2.6rem"
                 >
                   hop.svg
@@ -246,24 +256,26 @@ exports[`The Bridge route list should render with routes 1`] = `
             </div>
           </div>
           <div
-            class="sc-furwcr fhgROL"
+            class="sc-pVTFL kPlIfM"
           >
             <svg
               class="arrow__icon"
               color="#FFFFFF"
               height="1.8rem"
+              id="7190.263315394177"
               width="2.1rem"
             >
               double-arrow-right.svg
             </svg>
           </div>
           <div
-            class="sc-iCfMLu fRazBy"
+            class="sc-furwcr bwENRV"
           >
             <svg
               class="amount__icon"
               color="#FFFFFF"
               height="3.2rem"
+              id="1015.588650526194"
               width="2.8rem"
             >
               usdc.svg
@@ -295,23 +307,24 @@ exports[`The Bridge route list should render with routes 1`] = `
     <div
       aria-expanded="false"
       aria-label="select route"
-      class="sc-iqseJM bzJIfm sc-crHmcD gYEbqi"
+      class="sc-crHmcD haCQkc sc-egiyK crsdKY"
       role="button"
       tabindex="0"
     >
       <div
-        class="sc-bdvvtL sc-jRQBWg fGXmcv fAOTCB sc-egiyK ixpTqd"
+        class="sc-bdvvtL sc-jRQBWg fGXmcv fAOTCB sc-gKclnd ebgUKt"
       >
         <div
-          class="sc-gKclnd konHGI"
+          class="sc-iCfMLu jHmZzF"
         >
           <div
-            class="sc-iCfMLu gYGgwA"
+            class="sc-furwcr ejwoJX"
           >
             <svg
               class="amount__icon"
               color="#FFFFFF"
               height="3.2rem"
+              id="5522.752829713938"
               width="2.8rem"
             >
               usdc.svg
@@ -323,24 +336,26 @@ exports[`The Bridge route list should render with routes 1`] = `
             </span>
           </div>
           <div
-            class="sc-furwcr fhgROL"
+            class="sc-pVTFL kPlIfM"
           >
             <svg
               class="arrow__icon"
               color="#FFFFFF"
               height="1.8rem"
+              id="4129.113657005372"
               width="2.1rem"
             >
               double-arrow-right.svg
             </svg>
           </div>
           <div
-            class="sc-pVTFL qWzKy"
+            class="sc-jrQzAO dxiNdQ"
           >
             <svg
               class="chain__icon chain__icon--sm"
               color="#FFFFFF"
               height="2.6rem"
+              id="8093.700593508699"
               width="2.6rem"
             >
               polygon.svg
@@ -358,6 +373,7 @@ exports[`The Bridge route list should render with routes 1`] = `
                   class="network__icon"
                   color="#FFFFFF"
                   height="2.6rem"
+                  id="5299.642704346304"
                   width="2.6rem"
                 >
                   polygon.svg
@@ -369,24 +385,26 @@ exports[`The Bridge route list should render with routes 1`] = `
             </div>
           </div>
           <div
-            class="sc-furwcr fhgROL"
+            class="sc-pVTFL kPlIfM"
           >
             <svg
               class="arrow__icon"
               color="#FFFFFF"
               height="1.8rem"
+              id="3856.0601027701264"
               width="2.1rem"
             >
               double-arrow-right.svg
             </svg>
           </div>
           <div
-            class="sc-iCfMLu fRazBy"
+            class="sc-furwcr bwENRV"
           >
             <svg
               class="amount__icon"
               color="#FFFFFF"
               height="3.2rem"
+              id="8860.828466341536"
               width="2.8rem"
             >
               usdc.svg
