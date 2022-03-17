@@ -3,6 +3,7 @@ import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import BridgeButton, {
   BridgeButtonProps,
 } from "../../common/components/BridgeButton/BridgeButton";
+import { removeDynamicIdFromSnapshot } from "../helpers";
 
 describe("The BridgeButton", () => {
   let mockCallback = jest.fn();
@@ -35,7 +36,7 @@ describe("The BridgeButton", () => {
 
     fireEvent.click(button);
 
-    expect(asFragment()).toMatchSnapshot();
+    expect(removeDynamicIdFromSnapshot(asFragment())).toMatchSnapshot();
     expect(button).toHaveTextContent("connect-wallet");
     expect(mockCallback).toHaveBeenCalledTimes(1);
   });
@@ -47,7 +48,7 @@ describe("The BridgeButton", () => {
 
     fireEvent.click(button);
 
-    expect(asFragment()).toMatchSnapshot();
+    expect(removeDynamicIdFromSnapshot(asFragment())).toMatchSnapshot();
     expect(button).toHaveTextContent("common.loading");
     expect(button).toHaveAttribute("disabled");
   });
@@ -57,7 +58,7 @@ describe("The BridgeButton", () => {
     const { asFragment } = render(<BridgeButton {...props} />);
     const button = screen.getByRole("button");
 
-    expect(asFragment()).toMatchSnapshot();
+    expect(removeDynamicIdFromSnapshot(asFragment())).toMatchSnapshot();
     expect(button).toHaveAttribute("disabled");
     expect(button).toHaveTextContent("insufficient-balance");
   });
@@ -67,7 +68,7 @@ describe("The BridgeButton", () => {
     const { asFragment } = render(<BridgeButton {...props} />);
     const button = screen.getByRole("button");
 
-    expect(asFragment()).toMatchSnapshot();
+    expect(removeDynamicIdFromSnapshot(asFragment())).toMatchSnapshot();
     expect(button).toHaveAttribute("disabled");
     expect(button).toHaveTextContent("input-amount");
   });
@@ -77,7 +78,7 @@ describe("The BridgeButton", () => {
     const { asFragment } = render(<BridgeButton {...props} />);
     const button = screen.getByRole("button");
 
-    expect(asFragment()).toMatchSnapshot();
+    expect(removeDynamicIdFromSnapshot(asFragment())).toMatchSnapshot();
     expect(button).toHaveAttribute("disabled");
     expect(button).toHaveTextContent("input-amount");
   });
@@ -93,7 +94,7 @@ describe("The BridgeButton", () => {
 
     fireEvent.click(button);
 
-    expect(asFragment()).toMatchSnapshot();
+    expect(removeDynamicIdFromSnapshot(asFragment())).toMatchSnapshot();
     expect(button).toHaveTextContent("bridge");
     expect(mockCallback).toHaveBeenCalledTimes(1);
   });
@@ -109,7 +110,7 @@ describe("The BridgeButton", () => {
 
     fireEvent.click(button);
 
-    expect(asFragment()).toMatchSnapshot();
+    expect(removeDynamicIdFromSnapshot(asFragment())).toMatchSnapshot();
     expect(button).toHaveTextContent("common.approve");
     expect(mockCallback).toHaveBeenCalledTimes(1);
   });

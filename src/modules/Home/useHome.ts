@@ -126,7 +126,7 @@ export default function useHome() {
     await onGetQuote(dto);
   };
 
-  const onDebouncedQuote = useCallback(_.debounce(onQuote, 3000), []);
+  const onDebouncedQuote = useCallback(_.debounce(onQuote, 0), []);
 
   const onBuildApproveTxData = async (
     owner: string,

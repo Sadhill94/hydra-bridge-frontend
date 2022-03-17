@@ -7,6 +7,7 @@ import RouteItem, {
 
 import { mockRouteItemBaseProps } from "../../__mocks__/props/bridgeRoutes";
 import { stakenetTheme as theme } from "../../shell/theme/stakenetTheme";
+import { removeDynamicIdFromSnapshot } from "../helpers";
 
 describe("The Bridge route item", () => {
   afterEach(() => {
@@ -17,7 +18,7 @@ describe("The Bridge route item", () => {
     const props: RouteItemProps = mockRouteItemBaseProps;
 
     const { asFragment } = render(<RouteItem {...props} />);
-    expect(asFragment()).toMatchSnapshot();
+    expect(removeDynamicIdFromSnapshot(asFragment())).toMatchSnapshot();
     render(<RouteItem {...props} />);
   });
 

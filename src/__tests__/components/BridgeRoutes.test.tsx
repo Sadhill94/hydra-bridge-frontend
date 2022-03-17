@@ -6,6 +6,7 @@ import BridgeRoutes, {
 } from "../../common/components/Molecules/BridgeRoutes/BridgeRoutes";
 
 import { mockBridgeRoutesBaseProps } from "../../__mocks__/props/bridgeRoutes";
+import { removeDynamicIdFromSnapshot } from "../helpers";
 
 describe("The Bridge routes", () => {
   afterEach(() => {
@@ -24,7 +25,7 @@ describe("The Bridge routes", () => {
     expect(screen.getByText(/available-routes/)).toBeInTheDocument();
     expect(screen.getByText(props.routes.length)).toBeInTheDocument();
     expect(renderedRoutes.length).toBe(props.routes.length);
-    expect(asFragment()).toMatchSnapshot();
+    expect(removeDynamicIdFromSnapshot(asFragment())).toMatchSnapshot();
   });
   it("should render the skeleton when in progress", async () => {
     const props: BridgeRoutesProps = {
@@ -44,6 +45,6 @@ describe("The Bridge routes", () => {
     expect(screen.getByText(/available-routes/)).toBeInTheDocument();
     expect(renderedRoutes.length).toBe(0);
     expect(skeletons.length).toBe(3);
-    expect(asFragment()).toMatchSnapshot();
+    expect(removeDynamicIdFromSnapshot(asFragment())).toMatchSnapshot();
   });
 });

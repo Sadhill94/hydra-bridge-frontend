@@ -3,6 +3,7 @@ import { cleanup, render } from "@testing-library/react";
 import RouteItemFees, {
   RouteItemFeesProps,
 } from "../../common/components/Molecules/BridgeRoutes/RouteItemFees";
+import { removeDynamicIdFromSnapshot } from "../helpers";
 
 describe("The Bridge route item fees", () => {
   afterEach(() => {
@@ -16,7 +17,7 @@ describe("The Bridge route item fees", () => {
     };
 
     const { asFragment } = render(<RouteItemFees {...props} />);
-    expect(asFragment()).toMatchSnapshot();
+    expect(removeDynamicIdFromSnapshot(asFragment())).toMatchSnapshot();
   });
 
   it("should be defined and correctly calculated", async () => {

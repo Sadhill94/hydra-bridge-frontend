@@ -9,6 +9,7 @@ import RouteList, {
 import { mockRouteListBaseProps } from "../../__mocks__/props/bridgeRoutes";
 import { stakenetTheme as theme } from "../../shell/theme/stakenetTheme";
 import QuoteResponseDtoMock from "../../__mocks__/fromResponse/QuoteResponseDto.json";
+import { removeDynamicIdFromSnapshot } from "../helpers";
 
 describe("The Bridge route list", () => {
   afterEach(() => {
@@ -19,7 +20,7 @@ describe("The Bridge route list", () => {
     const props: RouteListProps = mockRouteListBaseProps;
 
     const { asFragment } = render(<RouteList {...props} />);
-    expect(asFragment()).toMatchSnapshot();
+    expect(removeDynamicIdFromSnapshot(asFragment())).toMatchSnapshot();
     render(<RouteList {...props} />);
   });
 
@@ -38,7 +39,7 @@ describe("The Bridge route list", () => {
     );
     const routeWithError = screen.getByText(/error-showing-route/);
 
-    expect(asFragment()).toMatchSnapshot();
+    expect(removeDynamicIdFromSnapshot(asFragment())).toMatchSnapshot();
     expect(container.childElementCount).toBe(props.routes.length);
     expect(routeWithoutError).toBeInTheDocument();
     // @ts-ignore possible null
@@ -62,7 +63,7 @@ describe("The Bridge route list", () => {
 
     const routesWithError = screen.getAllByText(/error-showing-route/);
 
-    expect(asFragment()).toMatchSnapshot();
+    expect(removeDynamicIdFromSnapshot(asFragment())).toMatchSnapshot();
     expect(container.childElementCount).toBe(props.routes.length);
     routesWithError.forEach((route) => {
       expect(route).toBeInTheDocument();

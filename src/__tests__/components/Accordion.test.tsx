@@ -4,6 +4,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import Accordion, {
   AccordionProps,
 } from "../../common/components/Molecules/Accordion/Accordion";
+import { removeDynamicIdFromSnapshot } from "../helpers";
 
 describe("The Accordion", () => {
   const header = <h1>Foo</h1>;
@@ -19,7 +20,7 @@ describe("The Accordion", () => {
     expect(element.firstChild.lastChild).toHaveStyle(
       "transform: rotate(-90deg)"
     );
-    expect(asFragment()).toMatchSnapshot();
+    expect(removeDynamicIdFromSnapshot(asFragment())).toMatchSnapshot();
   });
 
   it("should render correctly when open", async () => {
@@ -32,6 +33,6 @@ describe("The Accordion", () => {
     expect(element.getAttribute("aria-expanded")).toBe("true");
     // @ts-ignore nullable
     expect(element.firstChild.lastChild).toHaveStyle("transform: rotate(0)");
-    expect(asFragment()).toMatchSnapshot();
+    expect(removeDynamicIdFromSnapshot(asFragment())).toMatchSnapshot();
   });
 });
