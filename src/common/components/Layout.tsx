@@ -4,6 +4,7 @@ import Web3Wrapper from "./Web3Wrapper";
 import { StakenetGlobalStyle } from "../../shell/theme/stakenetGlobalStyle";
 
 import { stakenetTheme } from "../../shell/theme/stakenetTheme";
+import { StoreProvider } from "../../store/StoreContext";
 
 interface ILayoutProps {
   theme: any;
@@ -17,12 +18,14 @@ const Root = styled.div`
 
 const Layout = ({ theme, children }: ILayoutProps) => {
   return (
-    <ThemeProvider theme={{ ...theme, sTheme: stakenetTheme }}>
-      <StakenetGlobalStyle />
-      <Web3Wrapper>
-        <Root>{children}</Root>
-      </Web3Wrapper>
-    </ThemeProvider>
+    <StoreProvider>
+      <ThemeProvider theme={{ ...theme, sTheme: stakenetTheme }}>
+        <StakenetGlobalStyle />
+        <Web3Wrapper>
+          <Root>{children}</Root>
+        </Web3Wrapper>
+      </ThemeProvider>
+    </StoreProvider>
   );
 };
 
