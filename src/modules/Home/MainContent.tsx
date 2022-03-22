@@ -113,6 +113,7 @@ const MainContent = ({
   const handleAmountInChange = (
     evt: React.ChangeEvent<HTMLInputElement>
   ): void => {
+    console.log("EVT", evt);
     const value = replaceCharsToHaveOnlyDotOrStringInIt(evt.target.value);
     onAmountChange(value);
   };
@@ -135,6 +136,7 @@ const MainContent = ({
         placeholder={"0.0"}
         isDisabled={inProgress || isWrongNetwork}
         onChange={handleAmountInChange}
+        isLazy={true}
         style={{ marginBottom: theme.margin.default }}
       />
       <Input

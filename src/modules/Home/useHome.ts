@@ -65,6 +65,7 @@ export default function useHome() {
   }, [network, setIsWrongNetwork]);
 
   const onGetQuote = async (dto: QuoteRequestDto) => {
+    console.log("QUOTE REQUEST DTO", dto);
     if (
       dto.amount &&
       dto.fromAsset &&
@@ -123,10 +124,11 @@ export default function useHome() {
   };
 
   const onQuote = async (dto: QuoteRequestDto) => {
+    console.log("FETCHIGN QUOTE");
     await onGetQuote(dto);
   };
 
-  const onDebouncedQuote = useCallback(_.debounce(onQuote, 3000), []);
+  const onDebouncedQuote = useCallback(_.debounce(onQuote, 0), []);
 
   const onBuildApproveTxData = async (
     owner: string,

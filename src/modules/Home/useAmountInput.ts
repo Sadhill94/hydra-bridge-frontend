@@ -22,6 +22,7 @@ function useAmountInput(
   const getParsedAmountOut = (): number => parseStringToNumber(amountOut);
 
   const onAmountInChange = (value: string) => {
+    console.log("value onAmountInChange", value);
     setAmountIn(value);
     setAmountOut(value);
     setIsNotEnoughBalance(
