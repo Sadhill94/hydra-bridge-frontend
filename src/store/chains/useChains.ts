@@ -2,6 +2,8 @@ import { useCallback, useContext, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
 import { StoreContext } from "../StoreContext";
+import { useBridge } from "../bridge/useBridge";
+
 import {
   ChainResponseDto,
   RouteDto,
@@ -10,6 +12,7 @@ import {
 import { getAllChains, getBridgeTokens } from "../../api/commonService";
 import { handleFetchError } from "../../helpers/error";
 import { SupportedChainId } from "../../common/enums";
+import { ETH } from "../../common/constants";
 
 /**
  * Hook - Allow us to expose directly values from the StoreContext regarding the ChainsReducers
@@ -20,6 +23,7 @@ import { SupportedChainId } from "../../common/enums";
 export function useChains() {
   // extract the state and dispatcher from the StoreContext that matter for our hook only
   const { chainsState, chainsDispatch } = useContext(StoreContext);
+  const { getSelectedToken } = useBridge();
 
   const { t } = useTranslation();
   /**
@@ -100,10 +104,24 @@ export function useChains() {
     }
   }, [chainsState.chains]);
 
+  const getTokens = useMemo(() => {
+    return chainsState.tokens;
+  }, [chainsState.tokens]);
+
   /**
    * Returns routes based of the quote result
    */
   const getRoutes = useMemo(() => chainsState.routes, [chainsState.routes]);
+
+  /**
+   * Check if the token is ETH
+   */
+  const isETH = useMemo(() => {
+    const token = getTokens.find(
+      (token: TokenResponseDto) => token.id === getSelectedToken.id
+    );
+    return token?.symbol.toString().toLowerCase() === ETH;
+  }, [getSelectedToken, getTokens]);
 
   return {
     fetchTokens,
@@ -112,6 +130,8 @@ export function useChains() {
     setRoutes,
     setTokens,
     getChains,
+    getTokens,
     getRoutes,
+    isETH,
   };
 }

@@ -26,6 +26,12 @@ import {
   walletReducer,
   initialWalletState,
 } from "./wallet/walletReducer";
+import {
+  CommonActions,
+  CommonDispatcher,
+  commonReducer,
+  initialCommonState,
+} from "./common/commonReducer";
 
 export const StoreContext = createContext<any>({});
 
@@ -40,6 +46,7 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
     chainsReducer,
     initialChainsState
   );
+
   const [bridgeState, _bridgeDispatch] = useReducer(
     bridgeReducer,
     initialBridgeState
@@ -48,6 +55,11 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
   const [walletState, _walletDispatch] = useReducer(
     walletReducer,
     initialWalletState
+  );
+
+  const [commonState, _commonDispatch] = useReducer(
+    commonReducer,
+    initialCommonState
   );
 
   /* ===================================
@@ -66,6 +78,9 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
     _walletDispatch({ type, payload: payload[0] } as WalletActions);
   }, []);
 
+  const commonDispatch: CommonDispatcher = useCallback((type, ...payload) => {
+    _commonDispatch({ type, payload: payload[0] } as CommonActions);
+  }, []);
   /* ===================================
    *  SETUP WRAPPED CONTEXTS
    * ================================= */
@@ -86,9 +101,19 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
     [walletState]
   );
 
+  const commonContext = useMemo(
+    () => ({ commonState, commonDispatch }),
+    [commonState]
+  );
+
   return (
     <StoreContext.Provider
-      value={{ ...chainsContext, ...bridgeContext, ...walletContext }}
+      value={{
+        ...chainsContext,
+        ...bridgeContext,
+        ...walletContext,
+        ...commonContext,
+      }}
     >
       {children}
     </StoreContext.Provider>

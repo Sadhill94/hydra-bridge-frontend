@@ -1,8 +1,8 @@
 import { useCallback, useContext, useMemo } from "react";
+import { useWeb3 } from "@chainsafe/web3-context";
 
 import { StoreContext } from "../StoreContext";
 import { TokenBalanceDto } from "../../common/dtos";
-import { useWeb3 } from "@chainsafe/web3-context";
 
 /**
  * Hook - Allow us to expose directly values from the StoreContext regarding the BridgeReducers
