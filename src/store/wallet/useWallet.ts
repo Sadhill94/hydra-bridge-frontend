@@ -52,12 +52,12 @@ export function useWallet() {
   /**
    * WEB3 VENDOR
    */
-  const connectWallet = async () => {
+  const connectWallet = useCallback(async () => {
     if (!getUserWallet) {
       await onboard?.walletSelect();
     }
     await onboard?.walletCheck();
-  };
+  }, []);
 
   /**
    * Getters

@@ -37,5 +37,5 @@ jobs:
       - name: run eslint
         run: yarn lint
 
-      - name: run tests
-        run: yarn test:ci
+#      - name: run tests
+#        run: yarn test:ci

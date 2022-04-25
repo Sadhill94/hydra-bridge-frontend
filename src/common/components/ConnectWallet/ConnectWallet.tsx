@@ -1,34 +1,24 @@
 import React from "react";
-import { useWeb3 } from "@chainsafe/web3-context";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 
 import { Button } from "../Atoms/Buttons/Button";
+import Icon from "../Atoms/Icons/Icon";
 
 import { stakenetTheme as theme } from "../../../shell/theme/stakenetTheme";
 import { DEFAULT_NOTIFY_CONFIG } from "../../constants";
 import { formatWalletAddress } from "../../../helpers/walletHelper";
-import Icon from "../Atoms/Icons/Icon";
-const { REACT_APP_DEFAULT_NETWORK_ID } = process.env;
+import { useWallet } from "../../../store/wallet/useWallet";
 
 const ConnectWallet = () => {
-  const { onboard, wallet, address = "", network } = useWeb3();
+  const { connectWallet, getWalletAddress, getIsWrongNetwork } = useWallet();
   const { t } = useTranslation();
-
-  const isWrongNetwork = parseInt(REACT_APP_DEFAULT_NETWORK_ID!) !== network;
-
-  const handleConnectWallet = async () => {
-    if (!wallet) {
-      await onboard?.walletSelect();
-    }
-    await onboard?.walletCheck();
-  };
 
   const handleCopyAddress = (evt: React.MouseEvent<HTMLButtonElement>) => {
     evt.preventDefault();
     evt.stopPropagation();
 
-    navigator.clipboard.writeText(address).then(
+    navigator.clipboard.writeText(getWalletAddress).then(
       () => {
         toast.info(t("common.copied"), {
           ...DEFAULT_NOTIFY_CONFIG,
@@ -37,7 +27,7 @@ const ConnectWallet = () => {
         });
       },
       (err) => {
-        toast.error(`${t("errors.copy")} ${address} `, {
+        toast.error(`${t("errors.copy")} ${getWalletAddress} `, {
           ...DEFAULT_NOTIFY_CONFIG,
           autoClose: false,
         });
@@ -46,17 +36,18 @@ const ConnectWallet = () => {
     );
   };
 
-  if (!address) {
+  if (!getWalletAddress) {
     return (
-      <Button iconName={"cutArrowRight"} onClick={handleConnectWallet}>
+      <Button iconName={"cutArrowRight"} onClick={connectWallet}>
         {t("connect-wallet")}
       </Button>
     );
   }
+
   return (
     <Button onClick={handleCopyAddress}>
-      {formatWalletAddress(isWrongNetwork, address)}
-      {!isWrongNetwork && (
+      {formatWalletAddress(getIsWrongNetwork, getWalletAddress)}
+      {!getIsWrongNetwork && (
         <span className={"btn-icon"}>
           <Icon
             color={theme.colors.white}

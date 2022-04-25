@@ -1,80 +1,88 @@
 import React, { useCallback, useMemo } from "react";
-import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 
-import { FlexWrapper } from "../Atoms/Wrappers/Wrapper";
 import BrandSelect from "../Molecules/BrandSelect/BrandSelect";
 
 import { SelectOptionType } from "../Molecules/BrandSelect/SelectOption";
 import { TokenResponseDto } from "../../dtos";
 import { IStyleableProps } from "../../commonTypes";
 
-import { stakenetTheme as theme } from "../../../shell/theme/stakenetTheme";
-import { devicesUp } from "../../../media";
 import { InputLabel } from "../Atoms/Label/Label";
+import { useChains } from "../../../store/chains/useChains";
+import { useBridge } from "../../../store/bridge/useBridge";
+import { useCommon } from "../../../store/common/useCommon";
+import { StyledAssetSelectResponsiveFlexWrapper } from "./styles";
 
-const ResponsiveFlexWrapper = styled(FlexWrapper)`
-  flex-direction: column;
-  align-items: start;
-
-  @media only screen and ${devicesUp.lg} {
-    flex-direction: row;
-    justify-content: end;
-    align-items: center;
-
-    .label {
-      margin: 0 ${theme.margin.md} 0 0;
-    }
-    /* brand-select */
-    & > div {
-      max-width: ${theme.maxWidth.md};
-    }
-  }
-`;
-
-type Props = {
-  selectedTokenId: number;
-  isLoading?: boolean;
-  tokens: TokenResponseDto[];
-  isDisabled: boolean;
-  onSelectAsset: (option: any) => void;
-};
-const AssetSelect = ({
-  isLoading,
-  isDisabled,
-  selectedTokenId,
-  tokens,
-  onSelectAsset,
-  className,
-}: Props & IStyleableProps) => {
+const AssetSelect = ({ className }: IStyleableProps) => {
+  const { getTokens } = useChains();
+  const { isDisabled, isLoading } = useCommon();
+  const { getSelectedToken } = useBridge();
   const { t } = useTranslation();
 
   const options: SelectOptionType[] = useMemo(
     () =>
-      tokens.map((token: TokenResponseDto) => ({
+      getTokens.map((token: TokenResponseDto) => ({
         label: token.symbol,
         value: token.id,
         iconName: `${token.symbol.toLocaleLowerCase()}Coin`,
       })),
-    [tokens]
+    [getTokens]
   );
 
   const getValue = useCallback(
-    () => options.find((option) => option.value === selectedTokenId) || null,
-    [options, selectedTokenId]
+    () =>
+      options.find((option) => option.value === getSelectedToken?.id) || null,
+    [options, getSelectedToken]
   );
+
+  const handleSelectAsset = (option: SelectOptionType) => {
+    console.log(option);
+    // const { value } = option;
+    // setAsset(value);
+    // setShowRoutes(false);
+    // setIsDisabled(true);
+    // if (amountIn && getParsedAmountIn() > 0) {
+    //   const isNotEnoughBalance = getIsNotEnoughBalance(
+    //     walletBalances!,
+    //     getParsedAmountIn(),
+    //     value,
+    //     isWrongNetwork
+    //   );
+    //   if (!isNotEnoughBalance) {
+    //     onDebouncedQuote({
+    //       recipient: address!,
+    //       fromAsset: value,
+    //       fromChainId: chainFrom?.chainId!,
+    //       toAsset: value,
+    //       toChainId: chainTo?.chainId!,
+    //       amount: getParsedAmountIn(),
+    //     });
+    //   }
+    //   if (isNotEnoughBalance) {
+    //     toast.error(t("not-enough-funds"), {
+    //       ...DEFAULT_NOTIFY_CONFIG,
+    //       autoClose: false,
+    //     });
+    //   }
+    //   setIsNotEnoughBalance(isNotEnoughBalance);
+    // }
+  };
+
   return (
     <div className={className}>
-      <ResponsiveFlexWrapper flexDirection={"row"} alignItems={"center"}>
+      <StyledAssetSelectResponsiveFlexWrapper
+        flexDirection={"row"}
+        alignItems={"center"}
+      >
         <InputLabel className={"label"}>{t("common.send")}</InputLabel>
         <BrandSelect
           value={getValue()}
           options={options}
           placeholder={t("select-an-asset")}
-          onChange={onSelectAsset}
-          isDisabled={isLoading || isDisabled}
+          onChange={handleSelectAsset}
+          isDisabled={isDisabled || isLoading}
         />
-      </ResponsiveFlexWrapper>
+      </StyledAssetSelectResponsiveFlexWrapper>
     </div>
   );
 };
