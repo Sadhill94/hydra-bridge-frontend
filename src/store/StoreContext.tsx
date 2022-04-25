@@ -20,6 +20,13 @@ import {
   initialBridgeState,
 } from "./bridge/bridgeReducer";
 
+import {
+  WalletActions,
+  WalletDispatcher,
+  walletReducer,
+  initialWalletState,
+} from "./wallet/walletReducer";
+
 export const StoreContext = createContext<any>({});
 
 type StoreProviderProps = {
@@ -38,6 +45,11 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
     initialBridgeState
   );
 
+  const [walletState, _walletDispatch] = useReducer(
+    walletReducer,
+    initialWalletState
+  );
+
   /* ===================================
    *  SETUP CUSTOM DISPATCHERS
    * ================================= */
@@ -48,6 +60,10 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
 
   const bridgeDispatch: BridgeDispatcher = useCallback((type, ...payload) => {
     _bridgeDispatch({ type, payload: payload[0] } as BridgeActions);
+  }, []);
+
+  const walletDispatch: WalletDispatcher = useCallback((type, ...payload) => {
+    _walletDispatch({ type, payload: payload[0] } as WalletActions);
   }, []);
 
   /* ===================================
@@ -65,8 +81,15 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
     [bridgeState]
   );
 
+  const walletContext = useMemo(
+    () => ({ walletState, walletDispatch }),
+    [walletState]
+  );
+
   return (
-    <StoreContext.Provider value={{ ...chainsContext, ...bridgeContext }}>
+    <StoreContext.Provider
+      value={{ ...chainsContext, ...bridgeContext, ...walletContext }}
+    >
       {children}
     </StoreContext.Provider>
   );
