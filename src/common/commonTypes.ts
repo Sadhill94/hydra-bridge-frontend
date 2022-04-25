@@ -1,13 +1,13 @@
 import { ToastPosition, ToastTransition } from "react-toastify/dist/types";
 
-import icons from "./components/Icon";
+export type IInlineStyles = {
+  [key: string]: Record<string, string>;
+};
 
 export interface IStyleableProps {
   style?: any;
   className?: string;
 }
-
-export type IconKeys = keyof typeof icons;
 
 export type NotificationType = {
   position: ToastPosition;

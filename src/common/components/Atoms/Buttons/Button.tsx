@@ -7,8 +7,9 @@ import {
   StyledDivAsButton,
   StyledPrimaryButton,
 } from "./styles";
-import { IconKeys, IStyleableProps } from "../../../commonTypes";
-import Icon from "../../Icon/Icon";
+import { IStyleableProps } from "../../../commonTypes";
+
+import Icon, { IconKeys } from "../Icons/Icon";
 
 export type ButtonProps = {
   isDisabled?: boolean;
@@ -46,6 +47,7 @@ export const PrimaryButton = (props: ButtonProps & IStyledButtonProps) =>
 type FakeButtonProps = {
   onClick: (evt: React.MouseEvent<HTMLDivElement>) => void;
   ariaLabel: string;
+  disabled?: boolean;
   ariaExpanded?: boolean;
   children: ReactNode;
 };
@@ -54,6 +56,7 @@ export const FakeButton = ({
   ariaLabel,
   ariaExpanded = false,
   children,
+  disabled,
   ...props
 }: FakeButtonProps & IStyledButtonProps & IStyleableProps) => (
   <StyledDivAsButton
@@ -62,6 +65,7 @@ export const FakeButton = ({
     aria-label={ariaLabel}
     aria-expanded={ariaExpanded}
     onClick={onClick}
+    disabled={disabled}
     {...props}
   >
     {children}

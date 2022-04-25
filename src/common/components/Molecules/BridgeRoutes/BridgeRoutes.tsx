@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
 import RouteList from "./RouteList";
@@ -11,6 +11,12 @@ import Accordion from "../Accordion/Accordion";
 import RoundedBubble from "../../Atoms/RoundedBubble/RoundedBubble";
 
 import { RouteDto } from "../../../dtos";
+import { IInlineStyles } from "../../../commonTypes";
+
+const styles: IInlineStyles = {
+  label: { width: "100%", textAlign: "left" },
+  skeleton: { marginBottom: "1rem" },
+};
 
 export type BridgeRoutesProps = {
   inProgress: boolean;
@@ -26,30 +32,33 @@ const BridgeRoutes = ({
 }: BridgeRoutesProps) => {
   const { t } = useTranslation();
 
-  const renderHeader = (): ReactNode => (
-    <FlexWrapper
-      flexDirection={"row"}
-      alignItems={"center"}
-      justifyContent={"space-between"}
-    >
-      <Label margin={"0"} style={{ width: "100%", textAlign: "left" }}>
-        {t("available-routes")}
-      </Label>
-      <RoundedBubble>{routes.length || 0}</RoundedBubble>
-    </FlexWrapper>
+  const renderHeader = useMemo(
+    () => (
+      <FlexWrapper
+        flexDirection={"row"}
+        alignItems={"center"}
+        justifyContent={"space-between"}
+      >
+        <Label margin={"0"} style={styles.label}>
+          {t("available-routes")}
+        </Label>
+        <RoundedBubble>{routes.length || 0}</RoundedBubble>
+      </FlexWrapper>
+    ),
+    [routes]
   );
-  const renderContent = (): ReactNode => {
+  const renderContent = useMemo(() => {
     return inProgress ? (
       <>
         <RectangleSkeleton
           className={"rectangle-skeleton"}
           height={"10rem"}
-          style={{ marginBottom: "1rem" }}
+          style={styles.label}
         />
         <RectangleSkeleton
           className={"rectangle-skeleton"}
           height={"10rem"}
-          style={{ marginBottom: "1rem" }}
+          style={styles.skeleton}
         />
         <RectangleSkeleton className={"rectangle-skeleton"} height={"10rem"} />
       </>
@@ -60,13 +69,16 @@ const BridgeRoutes = ({
         onRouteSelect={onRouteSelect}
       />
     );
-  };
+  }, [routes, selectedRouteId, inProgress]);
 
   return (
     <Container type={ContainerType.XXXL} noGutter={true}>
-      <Accordion header={renderHeader()} content={renderContent()} />
+      {/*
+      TODO 1 Warning: Functions are not valid as a React child. This may happen if you return a Component instead of <Component /> from render. Or maybe you meant to call this function rather than return it.
+      */}
+      <Accordion header={renderHeader} content={renderContent} />
     </Container>
   );
 };
 
-export default BridgeRoutes;
+export default React.memo(BridgeRoutes);

@@ -1,12 +1,13 @@
 import styled from "styled-components";
 
-import Icon from "../../Icon/Icon";
+import Icon from "../../Atoms/Icons/Icon";
 
 import { stakenetTheme as theme } from "../../../../shell/theme/stakenetTheme";
 
-export const AccordionContent = styled.div`
+export const AccordionContent = styled.div<{ padding?: string }>`
   width: 100%;
-  padding-top: ${theme.margin.lg};
+  padding: ${(props) =>
+    props.padding ? props.padding : `${theme.margin.lg} 0 0 0`};
 `;
 
 export const AccordionIcon = styled(Icon)<{ isopen: boolean }>`
