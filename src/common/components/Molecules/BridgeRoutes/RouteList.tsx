@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
 import RouteItem, { RouteItemContainerCard } from "./RouteItem";
@@ -7,6 +7,18 @@ import RouteItemFees from "./RouteItemFees";
 import { RouteDto } from "../../../dtos";
 import { getBridgeIcon, getCoinIcon } from "../../../../helpers/icons";
 import { stakenetTheme as theme } from "../../../../shell/theme/stakenetTheme";
+import { IInlineStyles } from "../../../commonTypes";
+
+const styles: IInlineStyles = {
+  routeItemWrapper: { width: "100%", marginBottom: theme.margin.md },
+  routeItemContainerCard: { width: "100%", marginBottom: theme.margin.md },
+  errorShowingRoutes: {
+    fontSize: theme.paragraph.md,
+    color: theme.colors.red,
+    margin: "auto",
+    textAlign: "center" as const,
+  },
+};
 
 export type RouteListProps = {
   routes: RouteDto[];
@@ -21,7 +33,7 @@ const RouteList = ({
 }: RouteListProps) => {
   const { t } = useTranslation();
 
-  const renderRouteItems = () => {
+  const renderRouteItems = useMemo(() => {
     return routes.map((route: RouteDto) => {
       try {
         const {
@@ -39,11 +51,7 @@ const RouteList = ({
         const bridgeSymbol = getBridgeIcon(bridgeName);
 
         return (
-          <div
-            key={id}
-            id={`route-${id}`}
-            style={{ width: "100%", marginBottom: theme.margin.md }}
-          >
+          <div key={id} id={`route-${id}`} style={styles.routeItemWrapper}>
             <RouteItem
               coinSymbol={coinSymbol}
               bridgeSymbol={bridgeSymbol}
@@ -71,23 +79,16 @@ const RouteList = ({
             key={route?.id}
             isSelected={false}
             hasError={true}
-            style={{ width: "100%", marginBottom: theme.margin.md }}
+            style={styles.routeItemContainerCard}
           >
-            <p
-              style={{
-                fontSize: theme.paragraph.md,
-                color: theme.colors.red,
-                margin: "auto",
-                textAlign: "center",
-              }}
-            >
+            <p style={styles.errorShowingRoutes}>
               {t("errors.showing-routes")}
             </p>
           </RouteItemContainerCard>
         );
       }
     });
-  };
-  return <>{renderRouteItems()}</>;
+  }, [routes, selectedRouteId]);
+  return <>{renderRouteItems}</>;
 };
-export default RouteList;
+export default React.memo(RouteList);

@@ -5,6 +5,13 @@ import { AccordionContent, AccordionIcon } from "./styles";
 import { ContainerCard } from "../../Atoms/Containers/Container";
 import { FakeButton } from "../../Atoms/Buttons/Button";
 import { FlexWrapper } from "../../Atoms/Wrappers/Wrapper";
+import { IInlineStyles } from "../../../commonTypes";
+
+const styles: IInlineStyles = {
+  flexWrapper: { pointerEvents: "none" },
+  accordionIcon: { marginLeft: "1.7rem" },
+  animateHeight: { width: "100%" },
+};
 
 export type AccordionProps = {
   header: ReactNode;
@@ -24,18 +31,22 @@ const Accordion = ({ header, content }: AccordionProps) => {
         aria-expanded={height !== 0}
         onClick={handleToggle}
       >
-        <FlexWrapper flexDirection={"row"} style={{ pointerEvents: "none" }}>
+        <FlexWrapper flexDirection={"row"} style={styles.flexWrapper}>
           {header}
           <AccordionIcon
             name={"cutArrowDown"}
             width={"2.4rem"}
             height={"2.4rem"}
-            style={{ marginLeft: "1.7rem" }}
+            style={styles.accordionIcon}
             isopen={height !== 0 ? 1 : 0}
           />
         </FlexWrapper>
       </FakeButton>
-      <AnimateHeight height={height} duration={500} style={{ width: "100%" }}>
+      <AnimateHeight
+        height={height}
+        duration={500}
+        style={styles.animateHeight}
+      >
         <AccordionContent>{content}</AccordionContent>
       </AnimateHeight>
     </ContainerCard>

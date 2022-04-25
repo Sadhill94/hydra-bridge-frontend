@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useWeb3 } from "@chainsafe/web3-context";
 import { toast } from "react-toastify";
 import styled from "styled-components";
@@ -29,6 +29,7 @@ import { getIsNotEnoughBalance } from "../../helpers/walletHelper";
 import { devicesUp } from "../../media";
 import { stakenetTheme as theme } from "../../shell/theme/stakenetTheme";
 import { DEFAULT_NOTIFY_CONFIG } from "../../common/constants";
+import { IInlineStyles } from "../../common/commonTypes";
 
 const StyledHydraBackground = styled.section`
   min-height: 100vh;
@@ -95,6 +96,11 @@ const ResponsiveFlexWrapper = styled(FlexWrapper)`
   }
 `;
 
+const styles: IInlineStyles = {
+  containerCard: { marginBottom: theme.margin.xxl },
+  bridgeRoutesWrapper: { marginTop: theme.margin.xl },
+};
+
 type Props = {
   chains: ChainResponseDto[];
 };
@@ -112,6 +118,7 @@ const Home = ({ chains }: Props) => {
     setShowRoutes,
     setIsDisabled,
     showRoutes,
+    getSelectedRoute,
     bridgeTx,
     isWrongNetwork,
     buildApproveTx,
@@ -151,7 +158,15 @@ const Home = ({ chains }: Props) => {
 
   const isAbleToMove = isApproved || isEth;
   const isConnected = !!address;
-  const isActionDisabled = inProgress || isWrongNetwork || isDisabled;
+
+  const isActionDisabled = useMemo(
+    () => inProgress || isWrongNetwork || isDisabled,
+    [inProgress, isWrongNetwork, isDisabled]
+  );
+  const shouldShowBridgeRoutes = useMemo(
+    () => showRoutes && !isNotEnoughBalance && isAbleToMove,
+    [showRoutes, isNotEnoughBalance, isAbleToMove]
+  );
 
   const handleAmountInChange = (value: string) => {
     setShowRoutes(false);
@@ -210,7 +225,7 @@ const Home = ({ chains }: Props) => {
     }
   };
 
-  const hanldeOnSelectChainFrom = (option: SelectOptionType) => {
+  const handleOnSelectChainFrom = (option: SelectOptionType) => {
     const selectedChain = onSelectChainFrom(option);
     setShowRoutes(false);
     setIsDisabled(true);
@@ -226,7 +241,7 @@ const Home = ({ chains }: Props) => {
     }
   };
 
-  const hanldeOnSelectChainTo = (option: SelectOptionType) => {
+  const handleOnSelectChainTo = (option: SelectOptionType) => {
     const selectedChain = onSelectChainTo(option);
     setShowRoutes(false);
     setIsDisabled(true);
@@ -261,6 +276,15 @@ const Home = ({ chains }: Props) => {
     setShowRoutes(false);
   };
 
+  const handleApproveWallet = () =>
+    onApproveWallet(
+      getParsedAmountIn(),
+      chainFrom?.isSendingEnabled!,
+      chainTo?.isReceivingEnabled!,
+      chainFrom?.chainId!,
+      chainTo?.chainId!
+    );
+
   return (
     <StyledHydraBackground>
       <CustomFlexWrapper>
@@ -274,10 +298,7 @@ const Home = ({ chains }: Props) => {
       </CustomFlexWrapper>
       <Container type={ContainerType.XXXL}>
         <Container maxWidth={theme.maxWidth["5xl"]} noGutter={true}>
-          <ContainerCard
-            style={{ marginBottom: theme.margin.xxl }}
-            hasHoverEffect={true}
-          >
+          <ContainerCard style={styles.containerCard} hasHoverEffect={true}>
             <ResponsiveFlexWrapper>
               <Icon
                 className={"hydra-bridge-logo"}
@@ -301,7 +322,7 @@ const Home = ({ chains }: Props) => {
             chainTo={chainTo!}
             amountIn={amountIn}
             amountOut={amountOut}
-            routeId={routeId}
+            route={getSelectedRoute()}
             inProgress={inProgress}
             isAbleToMove={isAbleToMove}
             isApproveReady={!!buildApproveTx}
@@ -312,23 +333,15 @@ const Home = ({ chains }: Props) => {
             isWrongNetwork={isWrongNetwork}
             isDisabled={isActionDisabled}
             onAmountChange={handleAmountInChange}
-            onApproveWallet={() =>
-              onApproveWallet(
-                getParsedAmountIn(),
-                chainFrom?.isSendingEnabled!,
-                chainTo?.isReceivingEnabled!,
-                chainFrom?.chainId!,
-                chainTo?.chainId!
-              )
-            }
+            onApproveWallet={handleApproveWallet}
             onConnectWallet={onConnectWallet}
             onMoveAssets={handleMoveAssets}
-            onSelectChainTo={hanldeOnSelectChainTo}
-            onSelectChainFrom={hanldeOnSelectChainFrom}
+            onSelectChainTo={handleOnSelectChainTo}
+            onSelectChainFrom={handleOnSelectChainFrom}
           />
 
-          {showRoutes && !isNotEnoughBalance && isAbleToMove && (
-            <div style={{ marginTop: theme.margin.xl }}>
+          {shouldShowBridgeRoutes && (
+            <div style={styles.bridgeRoutesWrapper}>
               <BridgeRoutes
                 inProgress={inProgress}
                 selectedRouteId={routeId}
@@ -343,4 +356,4 @@ const Home = ({ chains }: Props) => {
   );
 };
 
-export default Home;
+export default React.memo(Home);
